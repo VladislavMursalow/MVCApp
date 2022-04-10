@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Models
 {
-    public class User
+    public class UserViewModel
     { 
         public string Name { get; set; }
     }

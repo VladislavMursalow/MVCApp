@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MVCApp.Controllers
 {
-    public class UserController : Controller
+    public class UserControllerVladislaw : Controller
     {
         public IActionResult Index()
         {
@@ -15,7 +15,7 @@ namespace MVCApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(User user)
+        public IActionResult Index(UserViewModel user)
         {
             return View("Greetings", user);
         }

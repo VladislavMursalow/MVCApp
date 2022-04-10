@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MVCApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +25,12 @@ namespace MVCApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddMvcOptions(options => {
+                options.Conventions.Add(new VladislawControllerModelConvention());
+            });
+            services.Configure<RazorViewEngineOptions>(options => {
+                options.ViewLocationExpanders.Add(new ReverseExpander());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
